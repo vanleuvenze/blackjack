@@ -45,6 +45,14 @@ window.Hand = (function(superClass) {
     }, 0);
   };
 
+  Hand.prototype.actualScore = function(scores) {
+    if (scores[1] <= 21) {
+      return scores[1];
+    } else {
+      return scores[0];
+    }
+  };
+
   Hand.prototype.scores = function() {
     return [this.minScore(), this.minScore() + 10 * this.hasAce()];
   };

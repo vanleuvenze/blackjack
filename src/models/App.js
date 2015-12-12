@@ -18,17 +18,19 @@ window.App = (function(superClass) {
   };
 
   App.prototype.stand = function() {
-    console.log('crap');
-    while (this.get('dealerHand').scores()[0] < 17) {
+    var dealerHand, playerHand;
+    dealerHand = this.get('dealerHand').scores();
+    playerHand = this.get('playerHand').scores();
+    while (dealerHand[0] < 17 || dealerHand[1] < 17) {
       this.get('dealerHand').hit();
     }
-    if (this.get('dealerHand').scores()[0] > 21) {
+    if (dealerHand[0] > 21) {
       return alert('Player wins!');
-    } else if (this.get('dealerHand').scores()[0] > this.get('playerHand').scores()[0]) {
+    } else if (dealerHand[0] > playerHand[0]) {
       return alert('Dealer wins!');
-    } else if (this.get('dealerHand').scores()[0] === this.get('playerHand').scores()[0]) {
+    } else if (dealerHand[0] === playerHand[0]) {
       return alert("Pot split!");
-    } else if (this.get('dealerHand').scores()[0] < this.get('playerHand').scores()[0]) {
+    } else if (dealerHand[0] < playerHand[0]) {
       return alert('Player wins!');
     }
   };

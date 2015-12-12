@@ -10,16 +10,19 @@ class window.App extends Backbone.Model
 
 
   stand: ->  
-    console.log('crap')
-    while @get('dealerHand').scores()[0] < 17
+
+    dealerHand = @get('dealerHand').scores()
+    playerHand = @get('playerHand').scores()
+
+    while dealerHand[0] < 17 or dealerHand[1] < 17 
       @get('dealerHand').hit()
-    if @get('dealerHand').scores()[0] > 21
+    if dealerHand[0] > 21
       alert ('Player wins!')
-    else if @get('dealerHand').scores()[0] > @get('playerHand').scores()[0]
+    else if dealerHand[0] > playerHand[0]
       alert('Dealer wins!')
-    else if @get('dealerHand').scores()[0] == @get('playerHand').scores()[0]
+    else if dealerHand[0] == playerHand[0]
       alert("Pot split!")
-    else if @get('dealerHand').scores()[0] < @get('playerHand').scores()[0]
+    else if dealerHand[0] < playerHand[0]
       alert('Player wins!')
 	
     
