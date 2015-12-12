@@ -4,12 +4,18 @@ class window.Hand extends Backbone.Collection
   initialize: (array, @deck, @isDealer) ->
     #wheneve this changes, re render the view 
 
-  hit: ->
+  playerHit: ->
     @add(@deck.pop())
-    if @scores()[0] > 21
-      alert "Dealer Wins"
+    if (@actualScore(@scores()) > 21)
+      alert("Dealer Wins!")
     @last()
 
+  dealerHit: ->
+    @add(@deck.pop())
+    if (@actualScore(@scores()) > 21)
+      alert("Player Wins!")
+    @last()
+  
   stand: -> 
     @each (card) ->
       card.set 'revealed', true if !card.revealed
