@@ -6,19 +6,20 @@ class window.Hand extends Backbone.Collection
 
   playerHit: ->
     @add(@deck.pop())
+    @last()
     if (@actualScore(@scores()) > 21)
       alert("Dealer Wins!")
-    @last()
 
   dealerHit: ->
     @add(@deck.pop())
+    @last()
     if (@actualScore(@scores()) > 21)
       alert("Player Wins!")
-    @last()
-  
+   
   stand: -> 
     @each (card) ->
-      card.set 'revealed', true if !card.revealed
+      card.flip(), true if !card.revealed
+
 
     @trigger 'stand', @
 
